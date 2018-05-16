@@ -11,10 +11,11 @@ class TaskAPI {
       status: "",
       timestamp: ""
     };
+    this.taskList = [];
   }
 
   // Mock uniqu id
-  static uniqueID() {
+  get uniqueID() {
     const n1 = Date.now(); // Unix timestamp
     const n2 = Math.floor(Math.random() * 1000); // Random whole number
     return String(n1).concat("-", n2); //Of type String
@@ -22,28 +23,32 @@ class TaskAPI {
 
   //Retrieve all tasks
   static getAllTasks() {
+    return mockdata;
     return new Promise((resolve, reject) => {
       resolve(Object.assign([], mockdata));
+      reject("Some error...");
+    }).then(function(data) {
+      return data;
     });
   }
 
   //Add a new task to the list
-  static add() {
+  add() {
     console.log("addTask");
   }
 
   //Remove a task from the list
-  static delete() {
+  delete() {
     console.log("deleteTask");
   }
 
   //Update a task in the list
-  static modify() {
+  modify() {
     console.log("modifyTask");
   }
 
   // Sort the list in a particular order
-  static sortTasks(sortobj = { property: "", order: "" }) {
+  sortTasks(sortobj = { property: "", order: "" }) {
     console.log("sort", sortobj);
   }
 }
