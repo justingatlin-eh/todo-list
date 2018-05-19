@@ -6,39 +6,37 @@ import {
   TASKS_LOAD_ERROR
 } from "api/constants";
 
-const addTask = data => {
+export const addTask = data => {
   return {
     type: ADD_TASK,
     data
   };
 };
 
-const deleteTask = data => {
+export const deleteTask = data => {
   return {
     type: DELETE_TASK,
     data
   };
 };
 
-const updateTask = data => {
+export const updateTask = data => {
   return {
     type: UPDATE_TASK,
     data
   };
 };
 
-const taskLoadError = data => {
+export const taskLoadError = data => {
   return {
     type: TASKS_LOAD_ERROR,
     data
   };
 };
 
-const tasksLoaded = data => {
+export const tasksLoaded = data => {
   return {
     type: TASKS_LOAD_SUCCESS,
     data
   };
 };
-
-export { addTask, deleteTask, updateTask, taskLoadError, tasksLoaded };

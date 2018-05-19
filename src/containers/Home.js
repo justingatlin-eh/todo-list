@@ -1,3 +1,5 @@
+import { connect } from 'react-redux';
+import { tasksLoaded, taskLoadError } from 'api/actions';
 import React from "react";
 import ToDoItem from "components/ToDoItem";
 
@@ -10,4 +12,20 @@ const Home = props => {
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.get("loading"),
+    taskObj: state.get("taskObj")
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onPageLoad: () => {
+    return TaskAPI.getAllTasks().then(
+      data => dispatch(tasksLoaded(data)),
+      error => dispatch(taskLoadError(error))
+    );
+  }
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

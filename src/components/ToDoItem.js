@@ -1,14 +1,13 @@
 import React from "react";
 
-const ToDoItem = props => {
-  let props = props || { item: {} };
+const ToDoItem = ({props}) => {
   console.log("ToDoItem", props);
   return (
     <div className="item">
-      <div>{props.item.name}</div>
-      <div>{props.item.description}</div>
-      <div>{props.item.duedate}</div>
-      <div>{props.item.status}</div>
+      <div>{this.props.item.name}</div>
+      <div>{this,props.item.description}</div>
+      <div>{this.props.item.duedate}</div>
+      <div>{this.props.item.status}</div>
     </div>
   );
 };
