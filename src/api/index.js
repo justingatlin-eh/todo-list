@@ -23,12 +23,9 @@ class TaskAPI {
 
   //Retrieve all tasks
   static getAllTasks() {
-    return mockdata;
     return new Promise((resolve, reject) => {
       resolve(Object.assign([], mockdata));
       reject("Some error...");
-    }).then(function(data) {
-      return data;
     });
   }
 
