@@ -34,6 +34,12 @@ export const taskLoadError = data => {
   };
 };
 
+export const fetchTasks = () => {
+  return {
+    type: TASKS_FETCH
+  };
+};
+
 export const tasksLoaded = data => {
   return {
     type: TASKS_LOAD_SUCCESS,

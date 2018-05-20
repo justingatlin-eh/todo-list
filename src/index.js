@@ -1,19 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import HandleToDoTasks from "api/reducer";
-import App from "./App";
+import Wrapper from "components";
 import registerServiceWorker from "./registerServiceWorker";
 
+//Add redux code here
 
-const store = createStore(HandleToDoTasks, applyMiddleware(thunk));
+ReactDOM.render(<Wrapper store={store} />, document.getElementById("root"));
 
-ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-  document.getElementById("root")
-);
 registerServiceWorker();

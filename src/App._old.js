@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.onPageLoad();
+    //this.onPageLoad();
   }
 
   render() {

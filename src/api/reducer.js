@@ -15,7 +15,7 @@ const initialState = fromJS({
 
 const HandleToDoTasks = (state = initialState, action) => {
   switch (action.type) {
-    case TASKS_LOADING:
+    case TASKS_FETCH:
       return state.set("loading", state.loading);
     case TASKS_LOAD_SUCCESS:
       return state.set("loading", false).set("taskObj", action.data);
