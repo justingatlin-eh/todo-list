@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import Header from "components/Header";
-import ToDoItem from "components/ToDoItem";
+import Wrapper from "containers/Wrapper";
 
-const App = ({ match: { params } }) => {
-  <section className="App">
-    <Header />
-    <ToDoItem taskObj={this.props.taskObj} />
-  </section>;
+const App = () => {
+  return (
+    <section className="App">
+      <Header />
+      <Wrapper />
+    </section>
+  );
 };
+
 export default App;

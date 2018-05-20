@@ -1,34 +1,42 @@
 // Wrapper Imports
 import React from "react";
-import { Provider } from "react-redux";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
-// Redux Store Imports
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import TaskAPI from "resources";
-import { fetchTasks } from "resources/actions";
-import HandleToDoTasks from "resources/reducer";
-
-const store = createStore(HandleToDoTasks, applyMiddleware(thunk));
-
-store.dispatch(fetchTasks());
-
-TaskAPI.getAllTasks().then(
-  data => store.dispatch(tasksLoaded(data)),
-  error => store.dispatch(taskLoadError(error))
-);
+import ToDoList from "components/ToDoList";
 
 class Wrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("state", this.state);
+  }
+
+  handleChange() {
+    //Dispatch here
+  }
+
   render() {
-    return (
-      <Provider store={store}>
-        <Switch>
-          <Route path="/" component={App} />
-        </Switch>
-      </Provider>
+    console.log("Wrapper", this);
+    return this.props.loading ? (
+      <div>Loading...</div>
+    ) : (
+      <ToDoList taskList={this.props.taskList} />
     );
   }
 }
 
-export default Wrapper;
+const mapStateToProps = state => {
+  return {
+    loading: state.get("loading"),
+    taskList: state.get("taskList")
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  onPageLoad: () => {}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);

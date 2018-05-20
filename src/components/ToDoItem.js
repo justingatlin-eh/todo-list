@@ -1,14 +1,24 @@
 import React from "react";
+import styled from "styled-components";
 
-const ToDoItem = ({ props }) => {
-  console.log("ToDoItem", props);
+const ListItem = styled.li``;
+
+const Name = styled.h3``;
+
+const Desc = styled.div``;
+
+const Date = styled.div``;
+
+const Status = styled.div``;
+
+const ToDoItem = props => {
   return (
-    <div className="item">
-      <div>{this.props.item.name}</div>
-      <div>{this.props.item.description}</div>
-      <div>{this.props.item.duedate}</div>
-      <div>{this.props.item.status}</div>
-    </div>
+    <ListItem>
+      <Name>{props.item.name}</Name>
+      <Desc>{props.item.description}</Desc>
+      <Date>{props.item.duedate}</Date>
+      <Status>{props.item.status}</Status>
+    </ListItem>
   );
 };
 

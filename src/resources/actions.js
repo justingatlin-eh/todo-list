@@ -3,7 +3,8 @@ import {
   DELETE_TASK,
   UPDATE_TASK,
   TASKS_LOAD_SUCCESS,
-  TASKS_LOAD_ERROR
+  TASKS_LOAD_ERROR,
+  TASKS_FETCH
 } from "resources/constants";
 
 export const addTask = data => {

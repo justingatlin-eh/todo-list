@@ -1,10 +1,34 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Wrapper from "components";
+import { createStore } from "redux";
+import HandleToDoTasks from "resources/reducer";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import App from "App";
+import { fetchTasks, tasksLoaded, taskLoadError } from "resources/actions";
+import TaskAPI from "resources";
 import registerServiceWorker from "./registerServiceWorker";
 
-//Add redux code here
+const store = createStore(HandleToDoTasks);
 
-ReactDOM.render(<Wrapper store={store} />, document.getElementById("root"));
+store.dispatch(fetchTasks());
+TaskAPI.getAllTasks().then(
+  data => store.dispatch(tasksLoaded(data)),
+  error => store.dispatch(taskLoadError(error))
+);
+
+class Root extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <Route path="/" component={App} />
+        </Router>
+      </Provider>
+    );
+  }
+}
+
+ReactDOM.render(<Root store={store} />, document.getElementById("root"));
 
 registerServiceWorker();
