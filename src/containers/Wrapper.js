@@ -6,9 +6,9 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 // Redux Store Imports
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import TaskAPI from "api";
-import { fetchTasks } from "api/actions";
-import HandleToDoTasks from "api/reducer";
+import TaskAPI from "resources";
+import { fetchTasks } from "resources/actions";
+import HandleToDoTasks from "resources/reducer";
 
 const store = createStore(HandleToDoTasks, applyMiddleware(thunk));
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { tasksLoaded, taskLoadError } from 'api/actions';
+import { tasksLoaded, taskLoadError } from 'resources/actions';
 import React from "react";
 import ToDoItem from "components/ToDoItem";
 

@@ -1,4 +1,4 @@
-import mockdata from "api/mockdata";
+import mockdata from "resources/mockdata";
 import Immutable from "immutable";
 
 class TaskAPI {

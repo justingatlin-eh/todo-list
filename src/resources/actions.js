@@ -4,7 +4,7 @@ import {
   UPDATE_TASK,
   TASKS_LOAD_SUCCESS,
   TASKS_LOAD_ERROR
-} from "api/constants";
+} from "resources/constants";
 
 export const addTask = data => {
   return {

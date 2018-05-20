@@ -5,7 +5,7 @@ import {
   UPDATE_TASK,
   TASKS_LOAD_SUCCESS,
   TASKS_LOAD_ERROR
-} from "api/constants";
+} from "resources/constants";
 import Immutable, { fromJS } from "immutable";
 
 const initialState = fromJS({

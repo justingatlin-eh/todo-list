@@ -5,9 +5,9 @@ import { ThemeProvider } from "styled-components";
 import { customTheme, Section } from "assets/styles/theme";
 import Header from "components/Header";
 import Wrapper from "containers";
-import HandleToDoTasks from "api/reducer";
-import { tasksLoaded, taskLoadError } from "api/actions";
-import TaskAPI from "./api";
+import HandleToDoTasks from "resources/reducer";
+import { tasksLoaded, taskLoadError } from "resources/actions";
+import TaskAPI from "./resources";
 
 class App extends Component {
   constructor(props) {
