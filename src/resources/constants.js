@@ -5,3 +5,4 @@ export const DELETE_TASK = "DELETE_TASK";
 export const UPDATE_TASK = "UPDATE_TASK";
 export const TASKS_LOADING = "TASKS_LOADING";
 export const TASKS_FETCH = "TASKS_FETCH";
+export const TOGGLE_MODAL = "TOGGLE_MODAL";

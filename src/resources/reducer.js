@@ -5,13 +5,15 @@ import {
   UPDATE_TASK,
   TASKS_LOAD_SUCCESS,
   TASKS_LOAD_ERROR,
-  TASKS_FETCH
+  TASKS_FETCH,
+  TOGGLE_MODAL
 } from "resources/constants";
 import Immutable, { fromJS } from "immutable";
 
 const initialState = fromJS({
   loading: true,
-  taskList: null
+  taskList: null,
+  showModal: false
 });
 
 const HandleToDoTasks = (state = initialState, action) => {
@@ -20,6 +22,8 @@ const HandleToDoTasks = (state = initialState, action) => {
       return state.set("loading", true);
     case TASKS_LOAD_SUCCESS:
       return state.set("loading", false).set("taskList", action.data);
+    case TOGGLE_MODAL:
+      return state.set("showModal", !state.get("showModal"));
     // case ADD_TASK:
     //   return state.set("loading", action.data);
     // case TASKS_LOAD_SUCCESS:

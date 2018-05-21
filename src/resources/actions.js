@@ -4,7 +4,8 @@ import {
   UPDATE_TASK,
   TASKS_LOAD_SUCCESS,
   TASKS_LOAD_ERROR,
-  TASKS_FETCH
+  TASKS_FETCH,
+  TOGGLE_MODAL
 } from "resources/constants";
 
 export const addTask = data => {
@@ -45,5 +46,11 @@ export const tasksLoaded = data => {
   return {
     type: TASKS_LOAD_SUCCESS,
     data
+  };
+};
+
+export const toggleModal = () => {
+  return {
+    type: TOGGLE_MODAL
   };
 };

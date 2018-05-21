@@ -5,6 +5,10 @@ import HandleToDoTasks from "resources/reducer";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "App";
+import EditTask from "containers/EditTask";
+import AddTask from "containers/AddTask";
+import { Container } from "assets/styles/SiteTheme";
+
 import { fetchTasks, tasksLoaded, taskLoadError } from "resources/actions";
 import TaskAPI from "resources";
 import registerServiceWorker from "./registerServiceWorker";
@@ -22,7 +26,9 @@ class Root extends React.Component {
     return (
       <Provider store={store}>
         <Router>
-          <Route path="/" component={App} />
+          <Container>
+            <Route exact path="/" component={App} />
+          </Container>
         </Router>
       </Provider>
     );
