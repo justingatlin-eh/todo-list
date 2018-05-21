@@ -21,6 +21,8 @@ class Wrapper extends React.Component {
     this.props.toggle();
   }
 
+  onChange()
+
   render() {
     return (
       <SiteTheme>
