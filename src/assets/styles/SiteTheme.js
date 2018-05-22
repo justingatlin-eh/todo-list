@@ -75,3 +75,5 @@ export const Input = styled.input.attrs({
   display: inline-block;
   width: 60%;
 `;
+
+export const Select = styled.select``;
