@@ -38,7 +38,7 @@ const ToDoItem = props => {
         <Name>{props.item.name}</Name>
         <PseudoLink
           onClick={event => {
-            props.handleClicks(props.item);
+            props.editHandler(props.item);
           }}
         >
           Edit

@@ -1,21 +1,14 @@
 import React from "react";
 import { ModalWrapper, CloseButton } from "assets/styles/SiteTheme";
+import FormContainer from "components/FormContainer";
 
-import EditTask from "containers/EditTask";
-
-class Modal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return this.props.item ? (
-      <ModalWrapper className="modal" showModal={this.props.showModal}>
-        <CloseButton onClick={this.props.handleClick}>&#x2718;</CloseButton>
-        <EditTask handleClick={this.props.handleClick} item={this.props.item} />
-      </ModalWrapper>
-    ) : null;
-  }
-}
+const Modal = props => {
+  return props.showModal ? (
+    <ModalWrapper showModal={props.showModal} className="modal">
+      <CloseButton onClick={props.endEdit}>&#x2718;</CloseButton>
+      <FormContainer {...props} />
+    </ModalWrapper>
+  ) : null;
+};
 
 export default Modal;

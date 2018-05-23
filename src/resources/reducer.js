@@ -6,7 +6,8 @@ import {
   TASKS_LOAD_SUCCESS,
   TASKS_LOAD_ERROR,
   TASKS_FETCH,
-  TOGGLE_MODAL
+  CLOSE_MODAL,
+  START_EDIT
 } from "resources/constants";
 import Immutable, { fromJS } from "immutable";
 
@@ -22,8 +23,10 @@ const HandleToDoTasks = (state = initialState, action) => {
       return state.set("loading", true);
     case TASKS_LOAD_SUCCESS:
       return state.set("loading", false).set("taskList", action.data);
-    case TOGGLE_MODAL:
-      return state.set("showModal", !state.get("showModal"));
+    case START_EDIT:
+      return state.set("showModal", true).set("item", action.data);
+    case CLOSE_MODAL:
+      return state.set("showModal", false);
     // case ADD_TASK:
     //   return state.set("loading", action.data);
     // case TASKS_LOAD_SUCCESS:

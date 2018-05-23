@@ -5,7 +5,7 @@ import HandleToDoTasks from "resources/reducer";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "App";
-import EditTask from "containers/EditTask";
+import FormContainer from "components/FormContainer";
 import AddTask from "containers/AddTask";
 import { Container } from "assets/styles/SiteTheme";
 

@@ -5,7 +5,8 @@ import {
   TASKS_LOAD_SUCCESS,
   TASKS_LOAD_ERROR,
   TASKS_FETCH,
-  TOGGLE_MODAL
+  CLOSE_MODAL,
+  START_EDIT
 } from "resources/constants";
 
 export const addTask = data => {
@@ -49,8 +50,15 @@ export const tasksLoaded = data => {
   };
 };
 
-export const toggleModal = () => {
+export const startEdit = item => {
   return {
-    type: TOGGLE_MODAL
+    type: START_EDIT,
+    data: item
+  };
+};
+
+export const closeModal = () => {
+  return {
+    type: CLOSE_MODAL
   };
 };
