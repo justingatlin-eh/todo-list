@@ -76,4 +76,11 @@ export const Input = styled.input.attrs({
   width: 60%;
 `;
 
+export const ErrorMsg = styled.div.attrs({
+  name: props => props.name
+})`
+  color: #ff0000;
+  visibility: hidden;
+`;
+
 export const Select = styled.select``;

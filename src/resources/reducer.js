@@ -2,7 +2,7 @@ import {
   TASKS_LOADING,
   ADD_TASK,
   DELETE_TASK,
-  UPDATE_TASK,
+  SAVE_CHANGES,
   TASKS_LOAD_SUCCESS,
   TASKS_LOAD_ERROR,
   TASKS_FETCH,
@@ -29,8 +29,8 @@ const HandleToDoTasks = (state = initialState, action) => {
       return state.set("showModal", false);
     // case ADD_TASK:
     //   return state.set("loading", action.data);
-    // case TASKS_LOAD_SUCCESS:
-    //   return state.set("loading", action.data);
+    case SAVE_CHANGES:
+      return state.set("loading", action.data);
     // case TASKS_LOAD_SUCCESS:
     //   return state.set("loading", action.data);
     // case TASKS_LOAD_SUCCESS:

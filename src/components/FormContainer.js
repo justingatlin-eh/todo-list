@@ -1,52 +1,90 @@
 import React from "react";
-import styled from "styled-components";
-import ToDoItem from "components/ToDoItem";
 import {
   Container,
-  Select,
   Input,
   Label,
-  FormButton
+  FormButton,
+  ErrorMsg
 } from "assets/styles/SiteTheme";
 
-const InputItem = ({ name, value }) => {
-  return (
-    <div className={name}>
-      <Label for={name}>{name}</Label>
-      <Input type="text" id={name} name={name} value={value} />
-    </div>
-  );
-};
+class FormContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...props.item };
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-const getInputItems = obj => {
-  let arr = [];
-  const re = /id|timestamp/i;
-  Object.entries(obj).map(item => {
-    if (!re.test(item[0])) arr.push(<InputItem key={obj.id} item={item} />);
-  });
-  return arr;
-};
+  createSelect = (name, value) => {
+    return (
+      <select name={name} onChange={this.handleChange}>
+        <option value="false" />
+        <option value="true" selected={value ? "selected" : null}>
+          complete
+        </option>
+      </select>
+    );
+  };
 
-const updateTask = () => console.log("update");
+  inputItem = (name, value, key, error) => {
+    return (
+      <div className={`${name} container`} key={key}>
+        <Label for={name}>{name}</Label>
+        {/status/i.test(name) ? (
+          this.createSelect(name, value)
+        ) : (
+          <Input
+            type={/duedate/i.test(name) ? "date" : "text"}
+            id={name}
+            name={name}
+            value={this.state[name]}
+            onChange={this.handleChange}
+            error={error}
+          />
+        )}
+      </div>
+    );
+  };
 
-const FormContainer = props => {
-  const itemObj = props.item;
-  const title = (props.item ? "Edit" : "Add").concat(" Task");
-  return (
-    <Container>
-      <h1>{title}</h1>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          updateTask(itemObj);
-        }}
-      >
-        {itemObj.id ? getInputItems(itemObj) : null}
+  getInputItems = obj => {
+    let arr = [];
+    const re = /id|timestamp/i;
+    Object.entries(obj).map((item, idx) => {
+      const key = "item-" + idx;
+      if (!re.test(item[0])) {
+        arr.push(this.inputItem(item[0], item[1], key));
+      }
+    });
+    return arr;
+  };
 
-        <FormButton type="submit">Update Task</FormButton>
-      </form>
-    </Container>
-  );
-};
+  handleChange = event => {
+    const el = event.target;
+    const name = el.name;
+    const value = el.value;
+    const obj = {};
+    obj[name] = value;
+    this.setState(obj);
+  };
+
+  render() {
+    const itemObj = this.props.item;
+    const title = (itemObj ? "Edit" : "Add").concat(" Task");
+    return (
+      <Container>
+        <h1>{title}</h1>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            this.props.saveChanges(this.state);
+          }}
+        >
+          {this.getInputItems(itemObj)}
+
+          <FormButton type="submit">Update Task</FormButton>
+        </form>
+      </Container>
+    );
+  }
+}
 
 export default FormContainer;

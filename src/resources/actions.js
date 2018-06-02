@@ -1,7 +1,7 @@
 import {
   ADD_TASK,
   DELETE_TASK,
-  UPDATE_TASK,
+  SAVE_CHANGES,
   TASKS_LOAD_SUCCESS,
   TASKS_LOAD_ERROR,
   TASKS_FETCH,
@@ -23,9 +23,9 @@ export const deleteTask = data => {
   };
 };
 
-export const updateTask = data => {
+export const saveChanges = data => {
   return {
-    type: UPDATE_TASK,
+    type: SAVE_CHANGES,
     data
   };
 };
