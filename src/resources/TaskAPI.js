@@ -1,5 +1,8 @@
 import mockdata from "resources/mockdata";
 
+/**
+ * @description Template for new task
+ */
 const EmptyTask = {
   id: "",
   name: "",
@@ -9,44 +12,24 @@ const EmptyTask = {
   timestamp: Date.now()
 };
 
-const validationErrors = {
-  empty: "Field is empty"
-};
-
-function validation(obj) {
-  let result = {};
-  const entriesArr = Object.entries(obj);
-  entriesArr.forEach(function(item, idx) {
-    //Array => 0: key, 1: value
-    const name = item[0];
-    const value = item[1];
-    const type = typeof value;
-    switch (type) {
-      case "string":
-        if (!value) {
-          result[name] = validationErrors.empty;
-        }
-        break;
-    }
-  });
-  return result;
-}
-
-function findMatching(obj) {
-  const objID = obj.id;
-  const foundIdx = mockdata.findIndex(elm => elm.id == objID);
-  return foundIdx != -1 ? foundIdx : false;
-}
-
+/**
+ * @description API to handle Add, Delete, Update and sort operations
+ */
 class TaskAPI {
-  // Mock uniqu id
+  /**
+   * @description Simulate a unique id for each task
+   * @returns { String }
+   */
   get uniqueID() {
     const n1 = Date.now(); // Unix timestamp
     const n2 = Math.floor(Math.random() * 1000); // Random whole number
     return String(n1).concat("-", n2); //Of type String
   }
 
-  //Retrieve all tasks
+  /**
+   * @description Retriev an array with all tasks
+   * @returns { Array } An array of task objects
+   */
   static getAllTasks() {
     return new Promise((resolve, reject) => {
       resolve(Object.assign([], mockdata));
@@ -54,28 +37,45 @@ class TaskAPI {
     });
   }
 
-  //Add a new task to the list
-  static add() {
-    console.log("addTask");
-  }
-
-  //Remove a task from the list
-  static delete() {
-    console.log("deleteTask");
-  }
-
-  //Update a task in the list
+  /**
+   * @description Modify a task
+   * @param { Object} modifiedTask
+   * @returns { Boolean }
+   */
   static modify(modifiedTask) {
-    console.log("API: Modify");
-    const result = validation(modifiedTask);
-    const isValid = Object.keys(result).length ? result : true;
-    if (isValid === true) {
-      const matchingItem = findMatching(modifiedTask.id);
+    let valid;
+    const matchingIdx = mockdata.findIndex(elm => elm.id == modifiedTask.id);
+    if (matchingIdx != -1) {
+      mockdata[matchingIdx] = modifiedTask;
+      valid = true;
     }
-    return isValid;
+    return valid;
   }
 
-  // Sort the list in a particular order
+  /**
+   * @description Add a task to the array of tasks
+   * @param { Object } An object to add to the task array
+   * @returns { Boolean }
+   */
+  static add(newTask) {
+    mockdata.push(newTask);
+    return true;
+  }
+
+  /**
+   * @description Delete a task from the task array
+   * @param { String } The id of the task to delete
+   * @returns { Boolean }
+   */
+  static delete(id) {
+    delete mockdata[id];
+  }
+
+  /**
+   * @description Sort the array of tasks based on a property in the task object
+   * @param { Object } sortobj An object with two properties, a sort order and the property in the task object to sort by
+   * @returns { Array } An array of tasks sorted based on the property and order provided
+   */
   static sortTasks(sortobj = { property: "", order: "" }) {
     console.log("sort", sortobj);
   }

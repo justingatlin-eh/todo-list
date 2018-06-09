@@ -30,7 +30,7 @@ const HandleToDoTasks = (state = initialState, action) => {
     // case ADD_TASK:
     //   return state.set("loading", action.data);
     case SAVE_CHANGES:
-      return state.set("loading", action.data);
+      return state.set("loading", true).set("saveResult", action.data);
     // case TASKS_LOAD_SUCCESS:
     //   return state.set("loading", action.data);
     // case TASKS_LOAD_SUCCESS:
