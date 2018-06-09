@@ -25,11 +25,11 @@ const mapDispatchToProps = (dispatch, props) => ({
   handleChange: function(event) {
     console.log("change", event);
   },
-  saveChanges: function(item, props) {
-    //dispatch(item);
+  /**
+   * @description Sends an object to be saved by the TaskAPI
+   */
+  saveChanges: function(item, props) {    
     const id = item.id;
-    //Returns the error file or success
-    console.log("saveChanges", item);
     const result = TaskAPI.modify(item);
   },
   endEdit: function() {
