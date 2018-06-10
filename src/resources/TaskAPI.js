@@ -11,10 +11,6 @@ const EmptyTask = {
   status: false,
   timestamp: Date.now()
 };
-/**
- * @description Default Promise
- * @param {@} url
- */
 
 /**
  * @description API to handle Add, Delete, Update and sort operations
@@ -49,7 +45,7 @@ class TaskAPI {
   static modify(modifiedTask) {
     return new Promise((resolve, reject) => {
       const matchingIdx = mockdata.findIndex(elm => elm.id == modifiedTask.id);
-      if (matchingIdx === -1) {
+      if (matchingIdx !== -1) {
         mockdata[matchingIdx] = modifiedTask;
         resolve(true);
       }
