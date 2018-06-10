@@ -28,9 +28,16 @@ const mapDispatchToProps = (dispatch, props) => ({
   /**
    * @description Sends an object to be saved by the TaskAPI
    */
-  saveChanges: function(item, props) {    
+  saveChanges: function(item, props) {
     const id = item.id;
-    const result = TaskAPI.modify(item);
+    //dispatch(modifyTask());
+    TaskAPI.modify(item)
+      .then(function(response) {
+        console.log("promise then", response);
+      })
+      .catch(err => {
+        console.log("promise error", err);
+      });
   },
   endEdit: function() {
     console.log("end edit");
@@ -40,4 +47,7 @@ const mapDispatchToProps = (dispatch, props) => ({
 
 //Connect to redux store
 //ToDoList is called
-export default connect(mapStateToProps, mapDispatchToProps)(ToDoList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ToDoList);
