@@ -6,7 +6,7 @@ import {
   TASKS_LOAD_ERROR,
   TASKS_FETCH,
   CLOSE_MODAL,
-  START_ACTION
+  START_EDIT
 } from "resources/constants";
 
 export const addTask = data => {
@@ -43,16 +43,16 @@ export const fetchTasks = () => {
   };
 };
 
-export const actionSuccess = data => {
+export const tasksLoaded = data => {
   return {
-    type: ACTION_SUCCESS,
+    type: TASKS_LOAD_SUCCESS,
     data
   };
 };
 
-export const startAction = item => {
+export const modifyTask = item => {
   return {
-    type: START_ACTION,
+    type: START_EDIT,
     data: item
   };
 };

@@ -7,3 +7,4 @@ export const TASKS_LOADING = "TASKS_LOADING";
 export const TASKS_FETCH = "TASKS_FETCH";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const START_ACTION = "START_ACTION";
+export const ACTION_SUCCESS = "ACTION_SUCCESS";

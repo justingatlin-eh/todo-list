@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 import ToDoList from "components/ToDoList";
 import TaskAPI from "resources/TaskAPI";
-import { startAction, closeModal, updateSuccess } from "resources/actions";
+import { startEdit, closeModal } from "resources/actions";
 
 //Props available to connected containers
 const mapStateToProps = state => {
@@ -30,15 +30,11 @@ const mapDispatchToProps = (dispatch, props) => ({
    */
   saveChanges: function(item, props) {
     const id = item.id;
-    dispatch(startAction())
+    //dispatch(modifyTask());
     TaskAPI.modify(item)
-      .then(function(response) {
-        console.log("promise then", response);
-        dispatch(updateSuccess());
-      })
+      .then(dispatch())
       .catch(err => {
         console.log("promise error", err);
-        //dispatch(failure(err));
       });
   },
   endEdit: function() {
